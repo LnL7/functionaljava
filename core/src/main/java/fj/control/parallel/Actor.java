@@ -2,6 +2,7 @@ package fj.control.parallel;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+import fj.E1Effects;
 import fj.Effect;
 import fj.F;
 import fj.Unit;
@@ -92,7 +93,7 @@ public final class Actor<A> {
    * @return A new actor that uses the given parallelization strategy and has the given side-effect.
    */
   public static <A> Actor<A> actor(final Strategy<Unit> s, final Effect<A> e) {
-    return new Actor<A>(s, P1.curry(e.e()));
+    return new Actor<A>(s, P1.curry(E1Effects.e(e)));
   }
 
   /**
